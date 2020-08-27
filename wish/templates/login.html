@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wishing App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="welcome">
+                <h1>Welcome! Sign in to make a wish!</h1>
+            </div>
+        </div>
+        <div class="form">
+            <h3>Register</h3>
+            <form action="/register"method=POST>
+                {% csrf_token %}
+                <label for="first_name">First Name</label>
+                <input type="text"name='first_name'placeholder='Your first name..'>
+                <label for="last_name">Last Name</label>
+                <input type="text"name='last_name'placeholder='Your last name..'>
+                <label for="email">Email</label>
+                <input type="text"name='email'placeholder='Your email..'>
+                <label for="password">Password</label>
+                <input type="password"name='password'placeholder='Password'>
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password"name='confirm_password'placeholder='Confirm Password'>
+                <button type='submit'>Register</button>
+            </form>
+        </div>
+        <div class="form">
+            <h3>Login</h3>
+            <form action="/login"method=POST>
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type="text"name='email'placeholder='Email'>
+                <label for="password">Password</label>
+                <input type="password"name='password'placeholder='Password'>
+                <button type='submit'>Login</button>
+            </form>
+        </div>
+        <div class='errors'>
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
